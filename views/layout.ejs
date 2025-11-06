@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title><%= siteName %></title>
+  <link rel="stylesheet" href="/css/style.css"/>
+</head>
+<body>
+  <!-- NAV -->
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="/"><span class="logo" aria-hidden="true"></span><%= siteName %></a>
+
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav id="primaryNav" class="nav-links" aria-label="Primary">
+        <a href="/search">Search</a>
+        <% if (user) { %><a href="/travel_plan" >My Plan</a><% } %>
+        <% if (!user) { %>
+          <a href="/login" class="btn ghost">Login</a>
+          <a href="/register" class="btn">Register</a>
+        <% } else { %>
+          <form action="/logout" method="post">
+            <button class="btn ghost" style="margin-left:.5rem">Logout (<%= user.username %>)</button>
+          </form>
+        <% } %>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container page">
+    <%- body %>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <small>© <%= new Date().getFullYear() %> <%= siteName %></small>
+      <nav class="footer-links">
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>

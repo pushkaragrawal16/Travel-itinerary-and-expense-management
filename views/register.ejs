@@ -1,0 +1,16 @@
+
+
+<section class="auth">
+  <h1>Create account</h1>
+  <% if (error) { %><div class="alert"><%= error %></div><% } %>
+  <form method="post" action="/register" class="card">
+    <label>Username(Email)
+      <input name="username" required />
+    </label>
+    <label>Password
+      <input name="password" type="password" required />
+    </label>
+    <button class="btn wide">Register</button>
+    <p class="muted">Already have an account? <a href="/login">Login</a></p>
+  </form>
+</section>

@@ -1,0 +1,26 @@
+
+<h1 class="section-title">Search results <%= q ? ('for “' + q + '”') : '' %></h1>
+
+<% if (destinations && destinations.length) { %>
+  <div class="cards">
+    <% destinations.forEach(d => { %>
+      <article class="card">
+        <header class="card-head">
+          <h2><%= d.city_name %></h2>
+          <span class="muted"><%= d.country %></span>
+        </header>
+        <p class="muted"><%= d.arrival_date || 'No description available.' %></p>
+        <footer class="card-foot">
+          <small class="muted">Avg cost: ₹<%= d.avg_cost || 0 %></small>
+          <% if (user) { %>
+            <button class="btn sm" disabled>Add to Plan</button>
+          <% } else { %>
+            <a class="btn sm ghost" href="/login">Login to add</a>
+          <% } %>
+        </footer>
+      </article>
+    <% }) %>
+  </div>
+<% } else { %>
+  <div class="alert">No destinations found.</div>
+<% } %>
