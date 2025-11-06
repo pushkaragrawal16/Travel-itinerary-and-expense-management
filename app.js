@@ -17,6 +17,7 @@ const db = mysql.createPool({
   host: process.env.DB_HOST || 'localhost',
   user: process.env.DB_USER || 'root',
   password: 'Pu@160307',
+ port: process.env.DB_PORT,
   database: process.env.DB_NAME || 'tourism',
   waitForConnections: true,
   connectionLimit: 10,
