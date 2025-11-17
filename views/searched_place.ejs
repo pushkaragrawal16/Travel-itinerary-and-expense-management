@@ -1,26 +1,38 @@
+<h1 class="section-title">
+  Search results <%= q ? ('for “' + q + '”') : '' %>
+</h1>
 
-<h1 class="section-title">Search results <%= q ? ('for “' + q + '”') : '' %></h1>
+<% if (results && results.length > 0) { %>
 
-<% if (destinations && destinations.length) { %>
   <div class="cards">
-    <% destinations.forEach(d => { %>
+    <% results.forEach(d => { %>
       <article class="card">
+        
         <header class="card-head">
           <h2><%= d.city_name %></h2>
           <span class="muted"><%= d.country %></span>
         </header>
-        <p class="muted"><%= d.arrival_date || 'No description available.' %></p>
-        <footer class="card-foot">
-          <small class="muted">Avg cost: ₹<%= d.avg_cost || 0 %></small>
-          <% if (user) { %>
-            <button class="btn sm" disabled>Add to Plan</button>
+
+        <p class="muted">
+          <% if (d.arrival_date) { %>
+            Arrive: <%= d.arrival_date %>
           <% } else { %>
-            <a class="btn sm ghost" href="/login">Login to add</a>
+            No date information available.
           <% } %>
+        </p>
+
+        <footer class="card-foot">
+          <small class="muted">Expenditure :<%= acost[0].activitycost ||0 %></small>
+          <small class="muted">Total Expenditure :<%=tcost[0].totalcost|| 0 %></small>
+          <a class="btn sm ghost" href="/trip/<%= d.trip_id %>">View</a>
         </footer>
+
       </article>
     <% }) %>
   </div>
+
 <% } else { %>
+
   <div class="alert">No destinations found.</div>
+
 <% } %>

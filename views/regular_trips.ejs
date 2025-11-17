@@ -1,0 +1,46 @@
+<section class="page">
+
+  <h1 class="section-title">Regular Trips</h1>
+
+  <a href="/" class="btn ghost">← Back Home</a>
+
+  <% if (regular_trips.length === 0) { %>
+    <div class="alert">No regular trips found yet.</div>
+  <% } else { %>
+
+    <div class="cards mt">
+      <% regular_trips.forEach(t => { %>
+        <article class="card">
+          <header class="card-head">
+            <h2><%= t.trip_name %></h2>
+            <span class="muted"><%= t.country %></span>
+          </header>
+
+          <p class="muted">From: <strong><%= t.from_city %></strong></p>
+          <p class="muted">To: <strong><%= t.to_city %></strong></p>
+
+          <p class="muted">
+            Visits: <strong><%= t.visits %></strong>
+          </p>
+
+          <p class="muted">
+            Total Expense:<strong>₹ <%= Number(t.total_expense).toFixed(2) %></strong>
+
+          </p>
+
+          <p class="muted">
+            Avg Expense: <strong>₹ <%= Number(t.avg_expense).toFixed(2) %></strong>
+
+          </p>
+
+          <footer class="card-foot">
+            <a class="btn sm" href="/regular-trips/explore/<%= t.id %>">Explore</a>
+
+          </footer>
+        </article>
+      <% }) %>
+    </div>
+
+  <% } %>
+
+</section>

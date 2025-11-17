@@ -13,7 +13,7 @@
         →
         <%= t.end_date ? new Date(t.end_date).toDateString() : '—' %>
       </p>
-      <p class="muted">Expenditure: ₹<%= t.total_budget || 0 %></p>
+      <p class="muted">Expenditure: ₹<%= expenses[0].totalcost|| 0 %></p>
       <footer class="card-foot">
         <a class="btn sm" href="/trip/<%= t.trip_id %>">View details</a>
       </footer>

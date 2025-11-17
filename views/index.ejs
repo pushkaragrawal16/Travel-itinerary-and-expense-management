@@ -6,11 +6,14 @@
     <h1>Plan trips & track expenses with ease</h1>
     <p>Search destinations, build itineraries, and keep an eye on your budget — all in one place.</p>
     <div class="actions" style="margin-bottom: 5vh;">
-      <a href="/search" class="btn">Start searching</a>
+    
       <% if (!user) { %>
-        <a href="/register" class="btn ghost">Create Account</a>
-      <% } else { %>
-        <a href="/travel_plan" class="btn ghost">Open My Plan</a>
+        <a href="/register" class="btn ghost">Create new Account</a>
+        
+        <% } else { %>
+          <a href="/regular-trips" class="btn-modern">Show Regular Trips</a>
+          <a href="/regular-trips/add" class="btn btn-success">+ Add Regular Trip</a>
+
       <% } %>
     </div>
 
@@ -19,24 +22,19 @@
   <div class="trip-row">
     <input name="from_city" placeholder="From (e.g., Delhi)" required />
     <input name="to_city" placeholder="To (e.g., Goa)" required />
+
   </div>
 
   <div class="trip-row">
+    <input type="text" name="trip_name" placeholder="Trip Name" required />
+    <input type="text" name="country" placeholder="Country">
     <input type="date" name="start_date" />
     <input type="date" name="end_date" />
   </div>
 
-  <div class="trip-row">
-    <select name="transport" required>
-      <option value="" disabled selected>Select Transport</option>
-      <option value="Cab">Cab</option>
-      <option value="Car">Car</option>
-      <option value="Flight">Flight</option>
-      <option value="Train">Train</option>
-    </select>
-
+   
     <button type="submit" class="btn" style="width: 100%;">Create Trip</button>
-  </div>
+
 
 </form>
 

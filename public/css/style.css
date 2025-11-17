@@ -195,3 +195,386 @@ input:focus,textarea:focus,select:focus{outline:none;box-shadow:0 0 0 .25rem var
 .ui-trip-form select option:hover {
   background: var(--panel-2);
 }
+/* ---------- Upload Card / Section ---------- */
+.upload-card{
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  padding: 1.25rem;
+  margin-top: var(--space);
+}
+
+/* Title row */
+.upload-card h3{
+  font-size: var(--fs-lg);
+  margin: 0 0 .75rem 0;
+}
+
+/* ---------- Dropzone + File Input ---------- */
+/* Hide the ugly default input; we’ll click label instead */
+.input-file{
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0);
+  border: 0;
+}
+
+/* Pretty drop area */
+.dropzone{
+  display: grid; place-items: center;
+  gap: .5rem;
+  border: 2px dashed var(--border);
+  background: rgba(255,255,255,.03);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+  text-align: center;
+  cursor: pointer;
+  transition: .2s ease;
+}
+
+.dropzone:hover{
+  border-color: var(--brand);
+  box-shadow: 0 0 0 .25rem var(--ring);
+}
+
+.dropzone .hint{
+  color: var(--muted);
+  font-size: var(--fs-sm);
+}
+
+/* When dragging files over */
+.dropzone.is-dragover{
+  background: rgba(124,92,255,.06);
+  border-color: var(--brand);
+}
+
+/* Action row under dropzone */
+.upload-actions{
+  display: flex;
+  gap: .75rem;
+  margin-top: .9rem;
+  justify-content: flex-end;
+}
+
+/* Reuse your existing .btn / .btn.ghost if you have them */
+.btn.primary{
+  background: linear-gradient(90deg, var(--brand), var(--brand-2));
+  color: #fff; border: 0;
+}
+.btn.ghost{
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+.btn{ 
+  padding: .7rem 1rem; 
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  transition: .2s ease;
+}
+.btn:hover{ transform: translateY(-1px); }
+
+/* ---------- Small helper row (file name + size) ---------- */
+.file-meta{
+  margin-top: .5rem;
+  font-size: var(--fs-sm);
+  color: var(--muted);
+}
+
+/* ---------- Gallery Grid ---------- */
+.media-grid{
+  display: grid;
+  gap: .9rem;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  margin-top: var(--space);
+}
+
+.media-item{
+  position: relative;
+  background: var(--panel-2, #151924);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  display: grid; place-items: center;
+}
+
+/* Images */
+.media-item img{
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+}
+
+/* Videos */
+.media-item video{
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+  background: #000;
+}
+
+/* Overlay actions (e.g., delete) */
+.media-item .overlay{
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,.0), rgba(0,0,0,.45));
+  opacity: 0; transition: .2s ease;
+  display: flex; align-items: flex-end; justify-content: space-between;
+  padding: .5rem;
+}
+.media-item:hover .overlay{ opacity: 1; }
+
+/* Delete / caption buttons */
+.media-item .icon-btn{
+  border: 1px solid var(--border);
+  background: rgba(0,0,0,.45);
+  backdrop-filter: blur(2px);
+  color: var(--text);
+  font-size: .85rem;
+  padding: .35rem .5rem;
+  border-radius: .5rem;
+  cursor: pointer;
+}
+.icon-btn.danger{ border-color: var(--danger); color: #fff; }
+.icon-btn:hover{ transform: translateY(-1px); }
+
+/* ---------- Inline errors / messages ---------- */
+.form-error{
+  margin-top: .5rem;
+  color: var(--danger);
+  font-size: var(--fs-sm);
+}
+
+.form-success{
+  margin-top: .5rem;
+  color: var(--success);
+  font-size: var(--fs-sm);
+}
+
+/* ---------- Responsive tweaks ---------- */
+@media (max-width: 640px){
+  .upload-actions{ justify-content: stretch; }
+  .btn{ width: 100%; }
+}
+/* DARK THEME SELECT DROPDOWN */
+select {
+  width: 100%;
+  padding: 12px 14px;
+  background: #111827;         /* Dark background */
+  color: #e5e7eb;              /* Light grey text */
+  border: 1px solid #374151;   /* Subtle border */
+  border-radius: 10px;
+  font-size: 15px;
+  outline: none;
+  appearance: none;            /* Remove default arrow */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  transition: 0.2s ease;
+  cursor: pointer;
+}
+
+/* Hover effect */
+select:hover {
+  border-color: #6366f1;       /* Light purple */
+}
+
+/* Focus (when user clicks) */
+select:focus {
+  border-color: #818cf8;
+  box-shadow: 0 0 8px rgba(99, 102, 241, 0.4);
+}
+
+/* Options inside dropdown */
+select option {
+  background: #1f2937;  /* dark */
+  color: #e5e7eb;       /* light text */
+  padding: 12px;
+}
+.select-wrapper {
+  position: relative;
+}
+
+.select-wrapper::after {
+  content: "▼";
+  font-size: 12px;
+  color: #9ca3af;
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+/* Search Bar Wrapper */
+.search-wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 20px auto;
+  width: 100%;
+}
+
+/* Search Form */
+.search-form {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 12px 18px;
+  border-radius: 14px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/* Input Box */
+.search-input {
+  padding: 12px 16px;
+  width: 280px;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  font-size: 15px;
+  background: rgba(255, 255, 255, 0.07);
+  color: #e6e6e6;
+  transition: 0.2s ease;
+}
+
+/* Input Focus Glow */
+.search-input:focus {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid #6a5cff;
+  box-shadow: 0 0 6px #6a5cff;
+}
+
+/* Search Button */
+.search-btn {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+  color: white;
+  background: linear-gradient(90deg, #6c63ff, #40d6ff);
+  transition: 0.25s;
+}
+
+/* Button Hover */
+.search-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(64, 214, 255, 0.4);
+}
+.expense-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+.expense-table th, .expense-table td {
+  padding: 12px;
+  border-bottom: 1px solid #333;
+}
+
+.expense-table th {
+  text-align: left;
+  color: #bbb;
+}
+/* --- Modern Gradient Buttons --- */
+/* --- Modern Gradient Buttons --- */
+.btn-modern {
+  background: linear-gradient(135deg, #4facfe 0%, #00f1fed3 100%);
+  color: #fff;
+  padding: 12px 26px;
+  border-radius: 12px;
+  border: none;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0px 4px 18px rgba(0, 200, 255, 0.3);
+  transition: 0.25s ease;
+  display: inline-block;
+}
+
+/* Hover effect */
+.btn-modern:hover {
+  transform: translateY(-3px);
+  box-shadow: 0px 6px 25px rgba(0, 200, 255, 0.5);
+  opacity: 0.95;
+}
+
+/* Optional: dark theme border */
+.btn-modern:active {
+  transform: translateY(-1px);
+  box-shadow: 0px 3px 10px rgba(0, 200, 255, 0.3);
+}
+
+#categoryChart {
+  max-width: 50vh;
+  height: 50vh !important;
+  margin: 0 auto;
+}
+.add-trip-container {
+        max-width: 600px;
+        margin: 40px auto;
+        background: #0d0f1a;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 0 15px rgba(0, 255, 170, 0.25);
+        color: white;
+    }
+
+    h2 {
+        text-align: center;
+        font-size: 28px;
+        font-weight: 700;
+        margin-bottom: 20px;
+    }
+
+    label {
+        margin-top: 15px;
+        font-weight: 600;
+        font-size: 15px;
+    }
+
+    input {
+        width: 100%;
+        padding: 12px;
+        margin-top: 5px;
+        border-radius: 8px;
+        border: 1px solid #2d3249;
+        background: #151829;
+        color: white;
+        font-size: 15px;
+    }
+
+    input::placeholder {
+        color: #a3adc1;
+    }
+
+    button {
+        width: 100%;
+        padding: 12px;
+        background: #00e676;
+        color: black;
+        border: none;
+        border-radius: 8px;
+        font-size: 17px;
+        font-weight: 700;
+        margin-top: 25px;
+        cursor: pointer;
+        transition: 0.25s;
+    }
+
+    button:hover {
+        background: #19ff8c;
+    }
+
+    .back-link {
+        display: inline-block;
+        margin-bottom: 15px;
+        color: #00e676;
+        text-decoration: none;
+        font-weight: 600;
+    }
+
+    .back-link:hover {
+        text-decoration: underline;
+    }

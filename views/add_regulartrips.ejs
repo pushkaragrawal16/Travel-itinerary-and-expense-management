@@ -1,0 +1,43 @@
+<div class="add-trip-container">
+    
+    <h2>Add Regular Trip</h2>
+
+    <a href="/regular-trips" class="back-link">← Back to Regular Trips</a>
+
+    <form action="/regular-trips/add" method="POST">
+
+        <label>From City</label>
+        <input 
+            type="text" 
+            name="from_city" 
+            placeholder="e.g., Delhi" 
+            required
+        >
+
+        <label>To City</label>
+        <input 
+            type="text" 
+            name="to_city" 
+            placeholder="e.g., Goa" 
+            required
+        >
+
+        <label>Trip Name</label>
+        <input 
+            type="text" 
+            name="trip_name" 
+            placeholder="e.g., Goa Vacation" 
+            required
+        >
+
+        <label>Country</label>
+        <input 
+            type="text" 
+            name="country" 
+            placeholder="e.g., India" 
+            required
+        >
+
+        <button type="submit">Save Trip</button>
+    </form>
+</div>

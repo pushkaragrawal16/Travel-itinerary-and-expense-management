@@ -1,0 +1,93 @@
+<section class="page">
+
+  <h1 class="section-title">Expense Summary</h1>
+
+  <a href="/trip/<%= tripId %>" class="btn ghost" style="margin-bottom:15px;">
+    ← Back to Trip
+  </a>
+
+  <div class="card mt">
+    <h3>Total Expenditure</h3>
+    <p class="muted" style="font-size:22px; margin-top:10px;">
+      ₹ <%= total && total[0] ? total[0].total : 0 %>
+    </p>
+  </div>
+
+
+  <div class="card mt">
+    <h3>Expense Details</h3>
+
+    <table class="expense-table">
+      <tr>
+        <th>Date</th>
+        <th>Category</th>
+        <th>Amount</th>
+      </tr>
+
+      <% expenses.forEach(e => { %>
+        <tr>
+          <td><%= e.expense_date ? e.expense_date.toISOString().slice(0,10) : '-' %></td>
+          <td><%= e.category_name || 'Uncategorized' %></td>
+          <td>₹ <%= e.amount %></td>
+        </tr>
+      <% }) %>
+    </table>
+  </div>
+
+  <div class="card mt">
+    <h3>Category-wise Breakdown</h3>
+    <canvas id="categoryChart" height="130"></canvas>
+  </div>
+
+</section>
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+ 
+  const categoryLabels = <%- JSON.stringify(
+    (categoryTotals || []).map(c => c.label || "Uncategorized")
+  ) %>;
+
+  const categoryData = <%- JSON.stringify(
+    (categoryTotals || []).map(c => Number(c.total) || 0)
+  ) %>;
+
+  const canvas = document.getElementById('categoryChart');
+
+  if (canvas && categoryLabels.length > 0) {
+    const ctx = canvas.getContext('2d');
+
+    new Chart(ctx, {
+      type: 'pie',
+      data: {
+        labels: categoryLabels,
+        datasets: [{
+          data: categoryData,
+       backgroundColor: [
+  '#4cc9f0',  
+  '#4895ef',  
+  '#4361ee',  
+  '#3f37c9',  
+  '#3a0ca3',  
+  '#7209b7',  
+  '#f72585'   
+]
+
+,
+          borderWidth: 0
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { position: 'bottom' }
+        }
+      }
+    });
+
+  } else {
+    canvas.outerHTML = "<p class='muted'>No expenses to display.</p>";
+  }
+</script>
